@@ -25,6 +25,7 @@ class Service {
   create (data, params, cb) {
     debug('create', data, params);
 
+    // Message format
     // {
     //   From: 'donotreply@example.com',
     //   To: 'target@example.us',
@@ -32,7 +33,15 @@ class Service {
     //   TextBody: 'Test Message'
     // }
 
-    return this.model.sendEmail(data);
+    return new Promise((resolve, reject) => {
+      this.model.sendEmail(data, (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      });
+    });
   }
 }
 
