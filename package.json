@@ -1,7 +1,7 @@
 {
   "name": "feathers-postmark",
   "description": "A Postmark API service adapter for FeathersJS",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "homepage": "https://github.com/feathersjs/feathers-postmark",
   "main": "lib/",
   "keywords": [
