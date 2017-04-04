@@ -14,7 +14,8 @@
 npm install feathers-postmark --save
 ```
 
-[![postmark-logo-550x206](./postmark-logo.jpg)](https://postmarkapp.com/)
+[![postmark-logo](https://cloud.githubusercontent.com/assets/128857/24642528/13ccfa0e-18c5-11e7-88fe-362d58ff8c24.jpg)
+](https://postmarkapp.com/)
 
 ## Documentation
 
