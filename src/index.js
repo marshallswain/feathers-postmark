@@ -33,8 +33,11 @@ class Service {
     //   TextBody: 'Test Message'
     // }
 
+    // http://wildbit.github.io/postmark.js/
+
     return new Promise((resolve, reject) => {
-      this.model.sendEmail(data, (error, result) => {
+      let method = Array.isArray(data) ? 'sendEmailBatch' : data.TemplateId ? 'sendEmailWithTemplate' : 'sendEmail';
+      this.model[method](data, (error, result) => {
         if (error) {
           reject(error);
         } else {
