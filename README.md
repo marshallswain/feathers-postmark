@@ -26,14 +26,14 @@ Like all Feathers service adapters, the `postmark` adapter is a function that re
 
 ### `postmark(options)`
 - `options` `{Object}`
-  - `key` `{String}` - Your Postmark API key.
+  - `key` `{String}` - Your Postmark API key.  Set it to `POSTMARK_API_TEST` for testing purposes.  Required.
 
 Once you have passed your Postmark API `key` in the `options`, the service is ready to be `use`d in your application:
 
 ```js
 const postmark = require('feathers-postmark');
 const options = {
-  key: 'Your Postmark API Key'
+  key: 'POSTMARK_API_TEST'
 };
 
 app.use('messages', postmark(options));
@@ -106,7 +106,7 @@ const app = feathers()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   // Initialize your feathers plugin
-  .use('messages', postmark({key: 'your postmark api key'})
+  .use('messages', postmark({key: 'POSTMARK_API_TEST'})
   .use(errorHandler());
 
 app.listen(3030);
