@@ -48,7 +48,10 @@ app.service('messages').hooks({
 ```
 ### `service.create(data[, params]) -> promise`
 The `create` method will send the provided `data` through the [Postmark Email API](http://developer.postmarkapp.com/developer-api-email.html#send-email).
-- `data` `{Object}` - Supports any of the options available in the Postmark [Email API body format](http://developer.postmarkapp.com/developer-api-email.html#send-email).
+- `data` `{PostmarkEmail | Array}` - Supports any of the options available in the Postmark [Email API body format](http://developer.postmarkapp.com/developer-api-email.html#send-email).
+
+#### Send a single message
+If the payload of data is in the format of a PostmarkEmail Object, as shown in the example, below, the [sendEmail](http://wildbit.github.io/postmark.js/Client.html#sendEmail) method of the `postmark` client will be used.
 
 ```js
 const message = {
@@ -85,6 +88,12 @@ const message = {
 
 app.service('my-postmark-service').create(message);
 ```
+
+#### Send a Templated Message
+If your message includes a `TemplateId` property, the [sendEmailWithTemplate](http://wildbit.github.io/postmark.js/Client.html#sendEmailWithTemplate) method of the `postmark` client will be used.  The message data can include any of the [PostmarkTemplateMessage](http://wildbit.github.io/postmark.js/global.html#PostmarkTemplateMessage) properties.
+
+#### Send a Batch Message
+If the `data` passed to `create` is an array, the data will be passed to the [sendEmailBatch](http://wildbit.github.io/postmark.js/Client.html#sendEmailBatch) method of the `postmark` client.
 
 ## Complete Example
 
