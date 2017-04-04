@@ -1,5 +1,8 @@
 # Change Log
 
+## [v0.0.5](https://github.com/feathersjs/feathers-postmark/tree/v0.0.5) (2017-04-04)
+[Full Changelog](https://github.com/feathersjs/feathers-postmark/compare/v0.0.4...v0.0.5)
+
 ## [v0.0.4](https://github.com/feathersjs/feathers-postmark/tree/v0.0.4) (2017-04-04)
 [Full Changelog](https://github.com/feathersjs/feathers-postmark/compare/v0.0.3...v0.0.4)
 
