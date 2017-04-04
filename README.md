@@ -14,9 +14,76 @@
 npm install feathers-postmark --save
 ```
 
+[![postmark-logo-550x206](./postmark-logo.jpg)](https://postmarkapp.com/)
+
 ## Documentation
 
-Please refer to the [feathers-postmark documentation](http://docs.feathersjs.com/) for more details.
+The `feathers-postmark` service adapter creates services that send transactional email through [Postmark](https://postmarkapp.com/).
+
+### Configuration
+Like all Feathers service adapters, the `postmark` adapter is a function that receives an object as options and returns a class implementing the Feathers `service interface`.
+
+### `postmark(options)`
+- `options` `{Object}`
+  - `key` `{String}` - Your Postmark API key.
+
+Once you have passed your Postmark API `key` in the `options`, the service is ready to be `use`d in your application:
+
+```js
+const postmark = require('feathers-postmark');
+const options = {
+  key: 'Your Postmark API Key'
+};
+
+app.use('messages', postmark(options));
+
+app.service('messages').hooks({
+  before: {
+    create: [
+      // Hint: use hooks to protect your service from outside access.
+    ]
+  }
+});
+```
+### `service.create(data[, params]) -> promise`
+The `create` method will send the provided `data` through the [Postmark Email API](http://developer.postmarkapp.com/developer-api-email.html#send-email).
+- `data` `{Object}` - Supports any of the options available in the Postmark [Email API body format](http://developer.postmarkapp.com/developer-api-email.html#send-email).
+
+```js
+const message = {
+  "From": "sender@example.com",
+  "To": "receiver@example.com",
+  "Cc": "copied@example.com",
+  "Bcc": "blank-copied@example.com",
+  "Subject": "Test",
+  "Tag": "Invitation",
+  "HtmlBody": "<b>Hello</b>",
+  "TextBody": "Hello",
+  "ReplyTo": "reply@example.com",
+  "Headers": [
+    {
+      "Name": "CUSTOM-HEADER",
+      "Value": "value"
+    }
+  ],
+  "TrackOpens": true,
+  "TrackLinks": "None",
+  "Attachments": [
+    {
+      "Name": "readme.txt",
+      "Content": "dGVzdCBjb250ZW50",
+      "ContentType": "text/plain"
+    },
+    {
+      "Name": "report.pdf",
+      "Content": "dGVzdCBjb250ZW50",
+      "ContentType": "application/octet-stream"
+    }
+  ]
+};
+
+app.service('my-postmark-service').create(message);
+```
 
 ## Complete Example
 
@@ -28,7 +95,7 @@ const rest = require('feathers-rest');
 const hooks = require('feathers-hooks');
 const bodyParser = require('body-parser');
 const errorHandler = require('feathers-errors/handler');
-const plugin = require('feathers-postmark');
+const postmark = require('feathers-postmark');
 
 // Initialize the application
 const app = feathers()
@@ -38,7 +105,7 @@ const app = feathers()
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({ extended: true }))
   // Initialize your feathers plugin
-  .use('/plugin', plugin())
+  .use('messages', postmark({key: 'your postmark api key'})
   .use(errorHandler());
 
 app.listen(3030);
