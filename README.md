@@ -1,5 +1,7 @@
 # feathers-postmark
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs/feathers-postmark.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/feathersjs/feathers-postmark.png?branch=master)](https://travis-ci.org/feathersjs/feathers-postmark)
 [![Code Climate](https://codeclimate.com/github/feathersjs/feathers-postmark/badges/gpa.svg)](https://codeclimate.com/github/feathersjs/feathers-postmark)
 [![Test Coverage](https://codeclimate.com/github/feathersjs/feathers-postmark/badges/coverage.svg)](https://codeclimate.com/github/feathersjs/feathers-postmark/coverage)
