@@ -1,13 +1,13 @@
-import { expect } from 'chai';
-import plugin from '../src';
+import { assert } from 'chai';
+import postmark from '../src';
 
 describe('feathers-postmark', () => {
   it('is CommonJS compatible', () => {
-    expect(typeof require('../lib')).to.equal('function');
+    assert(typeof require('../lib') === 'function');
   });
 
   it('basic functionality', () => {
-    expect(typeof plugin).to.equal('function', 'It worked');
-    expect(plugin()).to.equal('feathers-postmark');
+    assert(typeof postmark === 'function', 'It worked');
+    assert(typeof postmark({key: 'POSTMARK_API_KEY'}).create === 'function');
   });
 });
