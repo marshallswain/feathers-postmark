@@ -3,7 +3,6 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs/feathers-postmark.svg)](https://greenkeeper.io/)
 
 [![Build Status](https://travis-ci.org/feathersjs/feathers-postmark.png?branch=master)](https://travis-ci.org/feathersjs/feathers-postmark)
-[![Code Climate](https://codeclimate.com/github/feathersjs/feathers-postmark/badges/gpa.svg)](https://codeclimate.com/github/feathersjs/feathers-postmark)
 [![Test Coverage](https://codeclimate.com/github/feathersjs/feathers-postmark/badges/coverage.svg)](https://codeclimate.com/github/feathersjs/feathers-postmark/coverage)
 [![Dependency Status](https://img.shields.io/david/feathersjs/feathers-postmark.svg?style=flat-square)](https://david-dm.org/feathersjs/feathers-postmark)
 [![Download Status](https://img.shields.io/npm/dm/feathers-postmark.svg?style=flat-square)](https://www.npmjs.com/package/feathers-postmark)
@@ -43,7 +42,8 @@ app.use('messages', postmark(options));
 app.service('messages').hooks({
   before: {
     create: [
-      // Hint: use hooks to protect your service from outside access.
+      // Use hooks in feathers-hooks-common to protect your service from outside access.
+      disallow('external')
     ]
   }
 });
