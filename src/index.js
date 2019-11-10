@@ -37,6 +37,10 @@ class Service {
 
     return new Promise((resolve, reject) => {
       let method = Array.isArray(data) ? 'sendEmailBatch' : data.TemplateId ? 'sendEmailWithTemplate' : 'sendEmail';
+      if (data.postmarkKey) {
+        this.model = new postmark.Client(data.postmarkKey);
+        delete data.postmarkKey;
+      }
       this.model[method](data, (error, result) => {
         if (error) {
           reject(error);
